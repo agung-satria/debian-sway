@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+winclass="$(xdotool search --class sp-term)";
+if [ -z "$winclass" ]; then
+  $TERMINAL --class sp-term
+else
+  if [ ! -f /tmp/sp-term ]; then
+    touch /tmp/sp-term && xdo hide "$winclass"
+  elif [ -f /tmp/sp-term ]; then
+    rm /tmp/sp-term && xdo show "$winclass"
+  fi
+fi

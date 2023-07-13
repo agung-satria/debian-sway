@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# wrappedhl
+# Launch Hyprland with a simple wrapper
+# Add this script to profile (.zprofile) if using login manager (sddm) to run hyprland, and comment hyprland execution binary section below
+
+cd ~/
+
+# Variables
+export XCURSOR_SIZE=28
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+export SDL_IM_MODULE=fcitx
+export GLFW_IM_MODULE=ibus
+
+# qt applications
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+export QT_QPA_PLATFORM="wayland"
+export QT_QPA_PLATFORMTHEME=qt5ct
+export XDG_CURRENT_DESKTOP=Unity
+
+#env variables for gtk
+
+gsettings set org.gnome.desktop.interface icon-theme 'Win11'
+gsettings set org.gnome.desktop.interface gtk-theme 'Windows-11'
+gsettings set org.gnome.desktop.interface cursor-theme 'macOS-BigSur'
+gsettings set org.gnome.desktop.interface cursor-size '28' # 22 24 28 32 40 48 56 64 72 80 88 96
+gsettings set org.gnome.desktop.interface font-name 'SF Pro Display 14'
+
+# Execute Hyprland (Comment this section if using login manager to run hyprland)
+if [ -f /usr/local/bin/Hyprland ]; then
+   exec /usr/local/bin/Hyprland >/dev/null 2>&1
+elif [ -f /usr/bin/Hyprland ]; then
+   exec /usr/bin/Hyprland >/dev/null 2>&1
+fi

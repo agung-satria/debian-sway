@@ -1,0 +1,75 @@
+# Open document in fit-width mode by default
+set adjust-open "best-fit"
+
+# One page per row by default
+set pages-per-row 1
+
+# stop at page boundries
+set scroll-page-aware "true"
+# set smooth-scroll "true" #unknow option, ?
+set scroll-full-overlap 0.01
+set scroll-step 100
+
+# zoom settings
+set zoom-min 10
+# set guioptions ""
+set guioptions none
+
+# zathurarc-dark
+
+set font "SF Pro Display 16"
+set default-bg "#171a1f" #00
+set default-fg "#fafdff" #01
+
+set statusbar-fg "#fafdff" #04
+set statusbar-bg "#171a1f" #01
+
+set inputbar-bg "#171a1f" #00 currently not used
+set inputbar-fg "#FFFFFF" #02
+
+set index-bg "#171a1f"
+set index-fg "#b6beca"
+set index-active-bg "#424447"
+set index-active-fg "#fafdff"
+
+set notification-error-bg "#e05f65" #08
+set notification-error-fg "#1c252c" #00
+
+set notification-warning-bg "#e05f65" #08
+set notification-warning-fg "#1c252c" #00
+
+set highlight-color "#f1cf8a" #0A
+set highlight-active-color "#70a5eb" #0D
+
+set completion-highlight-fg "#151515" #02
+set completion-highlight-bg "#70a5eb" #0C
+# set completion-highlight-bg "#78dba9" #0C
+set completion-bg "#171a1f" #02
+set completion-fg "#dee1e6" #0C
+
+set notification-bg "#78dba9" #0B
+set notification-fg "#151515" #00
+
+set recolor "false" # true: otomatis recolor(inverted), toggle dengan 'i'
+set recolor-lightcolor "#171a1f" #00
+set recolor-darkcolor "#b6beca" #06
+set recolor-reverse-video "true"
+set recolor-keephue "true"
+
+set sandbox none
+# set sandbox strict
+set statusbar-h-padding 2
+set statusbar-v-padding 2
+set page-padding 2
+set selection-clipboard clipboard
+map f toggle_fullscreen
+map [fullscreen] f toggle_fullscreen
+map D toggle_page_mode
+map R reload
+map r rotate
+map L zoom in
+map H zoom out
+map i recolor
+map g goto top
+map b toggle_statusbar
+map <C-p> feedkeys ":print<Return>"

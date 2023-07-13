@@ -1,0 +1,87 @@
+colors:
+  name: Agstr
+  primary:
+    # background: "#222222"
+    background: "#0A0E14"
+    foreground: "#B6BECA"
+  cursor:
+    text: "#070C0F"
+    cursor: "#F5F5F5"
+  normal:
+    black: "#1C252C"
+    red: "#E3535A"
+    green: "#57C88F"
+    yellow: "#E3BD70"
+    blue: "#5394EA"
+    magenta: "#C181EB"
+    cyan: "#6AB9E6"
+    white: "#DFE3E9"
+  bright:
+    black: "#384148"
+    red: "#F46269"
+    green: "#73EDAF"
+    yellow: "#F3DD8F"
+    blue: "#68ADFF"
+    magenta: "#D99AF8"
+    cyan: "#83D1F7"
+    white: "#FAFDFF"
+
+env:
+  TERM: xterm-256color
+
+window:
+  decorations: full
+  # title: ""
+  padding:
+    x: 4
+    y: 4
+  class:
+    instance: Alacritty
+    general: Alacritty
+  opacity: 0.85
+  # opacity: 1
+  dimensions:
+    columns: 104
+    lines: 27
+
+font:
+  normal:
+    family: JetBrains Mono Nerd Font
+    style: Regular
+
+  bold:
+    family: JetBrains Mono Nerd Font
+    style: Bold
+
+  italic:
+    family: JetBrains Mono Nerd Font
+    style: Italic
+
+  bold_italic:
+    family: JetBrains Mono Nerd Font
+    style: Bold Italic
+
+  size: 14
+
+  offset:
+    x: 0
+    y: 0
+
+  glyph_offset:
+    x: 0
+    y: 0
+
+selection:
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+  save_to_clipboard: true
+
+shell:
+  program: /usr/bin/zsh
+
+cursor:
+  style:
+    shape: Beam
+    blinking: On
+
+live_config_reload: true
+draw_bold_text_with_bright_colors: true

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+winclass="$(xdotool search --class sp-lf)";
+if [ -z "$winclass" ]; then
+  $TERMINAL --class sp-lf -e lf
+else
+  if [ ! -f /tmp/sp-lf ]; then
+    touch /tmp/sp-lf && xdo hide "$winclass"
+  elif [ -f /tmp/sp-lf ]; then
+    rm /tmp/sp-lf && xdo show "$winclass"
+  fi
+fi

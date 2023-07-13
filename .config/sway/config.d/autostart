@@ -1,0 +1,29 @@
+### Auth with polkit-gnome
+exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+
+### Notification Daemon
+exec swaync
+# exec mako
+
+### Network Applet
+exec nm-applet --indicator
+
+### Music Player Daemon
+exec mpd
+
+### Low battery notifier
+exec lbnrunner
+
+### Bluetooth
+exec blueman-applet
+
+### Clipboard manager
+exec wl-paste -t text --watch clipman store --no-persist
+
+### GTK3 applications take a long time to start
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec hash dbus-update-activation-environment 2>/dev/null && \
+     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+     
+### Ga tau gimana
+# exec --no-startup-id libinput-gestures

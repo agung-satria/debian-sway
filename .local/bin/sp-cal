@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+winclass="$(xdotool search --class sp-cal)";
+if [ -z "$winclass" ]; then
+  $TERMINAL --class sp-cal -e calcurse
+else
+  if [ ! -f /tmp/sp-cal ]; then
+    touch /tmp/sp-cal && xdo hide "$winclass"
+  elif [ -f /tmp/sp-cal ]; then
+    rm /tmp/sp-cal && xdo show "$winclass"
+  fi
+fi

@@ -1,0 +1,14 @@
+#!/bin/bash
+#Descriptions:
+
+chosen=$(printf "🔒 Lock\n🔃 Reboot\n📴 Power Off\n💤 Suspend\n🚪 Log Out\n📺 Display Off" | rofi -dmenu -i -theme-str '@import "~/.config/rofi/powermenu.rasi"')
+
+case "$chosen" in
+  "🔒 Lock") i3lock -f -c 000000 ;;
+	"🔃 Reboot") loginctl reboot ;;
+	"📴 Power Off") loginctl poweroff ;;
+  "💤 Suspend") blur-lock && loginctl suspend ;;
+  "🚪 Log Out") i3-msg exit ;;
+ 	"📺 Display Off") xset dpms force off ;;
+	*) exit 1 ;;
+esac

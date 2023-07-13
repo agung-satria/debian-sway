@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+winclass="$(xdotool search --class sp-nmtui)";
+if [ -z "$winclass" ]; then
+  $TERMINAL --class sp-nmtui -e nmtui
+else
+  if [ ! -f /tmp/sp-nmtui ]; then
+    touch /tmp/sp-nmtui && xdo hide "$winclass"
+  elif [ -f /tmp/sp-nmtui ]; then
+    rm /tmp/sp-nmtui && xdo show "$winclass"
+  fi
+fi

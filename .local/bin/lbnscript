@@ -1,0 +1,23 @@
+#!/bin/bash
+# Run this script with 'lbnrunner' script
+
+while true; do
+  bat() {
+    batstat="$(cat /sys/class/power_supply/BAT0/status)"
+    battery="$(cat /sys/class/power_supply/BAT0/capacity)"
+    if [[ $battery -ge 98 ]] && [[ $batstat = "Charging" ]];        then
+      notify-send -r "9972" "Fully charged 🔋 $battery%" --icon=$HOME/.config/swaync/assets/battery-full.png
+      ~/.local/bin/snd-notify
+    elif [[ $battery -ge 11 ]] && [[ $battery -le 15 ]] && [[ $batstat = "Discharging" ]];        then
+      notify-send -r "9972" "Low battery 🪫 $battery%" --icon=$HOME/.config/swaync/assets/low-battery.png
+      ~/.local/bin/snd-batterylow
+    elif [[ $battery -ge 6 ]] && [[ $battery -le 10 ]] && [[ $batstat = "Discharging" ]];        then
+      notify-send -r "9972" "Low battery 🪫 $battery%" --icon=$HOME/.config/swaync/assets/low-battery-critical.png
+      ~/.local/bin/snd-batterycritical
+    elif [[ $battery -ge 2 ]] && [[ $battery -le 5 ]] && [[ $batstat = "Discharging" ]];        then
+      systemctl suspend
+    fi
+  }
+  $(bat)
+  sleep 5m
+done

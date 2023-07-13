@@ -1,0 +1,3 @@
+#!/bin/bash
+#Descriptions: 
+du -a ~/.config/* | awk '{print $2}' | fzf | xargs -r $EDITOR ;

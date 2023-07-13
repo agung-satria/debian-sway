@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+winclass="$(xdotool search --class sp-plsmxr)";
+if [ -z "$winclass" ]; then
+  $TERMINAL --class sp-plsmxr -e pulsemixer
+else
+  if [ ! -f /tmp/sp-plsmxr ]; then
+    touch /tmp/sp-plsmxr && xdo hide "$winclass"
+  elif [ -f /tmp/sp-plsmxr ]; then
+    rm /tmp/sp-plsmxr && xdo show "$winclass"
+  fi
+fi

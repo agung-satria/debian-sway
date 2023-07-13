@@ -1,0 +1,63 @@
+#!/bin/sh
+
+alias \
+  install="sudo apt-get install" \
+  remove="sudo apt-get remove" \
+  purge="sudo apt-get remove --purge" \
+  clean="sudo apt-get autoremove" \
+  update="sudo apt-get update" \
+  upgrade="sudo apt-get upgrade" \
+  lu="apt list --upgradable" \
+
+# Verbosity and settings that you pretty much just always are going to want.
+alias \
+	c="clear" \
+	bc="bc -ql" \
+  ll="ls -l" \
+ 	ls="ls -hN --color=auto --group-directories-first" \
+  l="ls -l" \
+  la="ls -la" \
+  ltr="ls -ltrh" \
+  ltra="ls -ltrah" \
+ 	mkd="mkdir -pv" \
+  f="lf" \
+  F="$FMGR ." \
+  v="nvim" \
+  tmux="tmux -f $TMUX_CONFIG_DIR/tmux.conf" \
+  t="tmux" \
+  ta="tmux a" \
+  tK="tmux kill-server && echo tmux session killed" \
+  tl="tmux ls" \
+  tx="tmuxinator" \
+  trashput="trash-put" \
+  trashempty="trash-empty" \
+  trashlist="trash-list" \
+  trashrestore="trash-restore" \
+  trashrm="trash-rm" \
+  xfast="xset r rate 240 50" \
+  xdefault="xset r rate 460 25" \
+  mk="make && sudo make install" \
+  dl="spotdl" \
+  q="exit" \
+  z="zathura" \
+
+# LAMP services
+alias \
+  startapache="sudo systemctl start apache2.service && lampstatus" \
+  stopapache="sudo systemctl stop apache2.service && lampstatus" \
+  restartapache="sudo systemctl restart apache2.service && lampstatus" \
+  enableapache="sudo systemctl enable apache2.service && lampstatus" \
+  disableapache="sudo systemctl disable apache2.service && lampstatus" \
+  startmariadb="sudo systemctl start mariadb.service && lampstatus" \
+  stopmariadb="sudo systemctl stop mariadb.service && lampstatus" \
+  restartmariadb="sudo systemctl restart mariadb.service && lampstatus" \
+  enablemariadb="sudo systemctl enable mariadb.service && lampstatus" \
+  disablemariadb="sudo systemctl disable mariadb.service && lampstatus" \
+
+# Colorize commands when possible.
+alias \
+  ls="ls -hN --color=auto --group-directories-first" \
+  grep="grep --color=auto" \
+  diff="diff --color=auto" \
+
+  #alias ls='exa -al --long --header --color=always --group-directories-first' \

@@ -1,0 +1,49 @@
+#!/bin/sh
+
+## autoload vcs and colors
+autoload -Uz vcs_info
+autoload -U colors && colors
+
+# enable only git
+zstyle ':vcs_info:*' enable git
+
+# setup a hook that runs before every ptompt.
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+
+# add a function to check for untracked files in the directory.
+# from https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples
+zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
+
++vi-git-untracked(){
+if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
+  git status --porcelain | grep '??' &> /dev/null ; then
+  # This will show the marker if there are any untracked files in repo.
+  # If instead you want to show the marker only if there are untracked
+  # files in $PWD, use:
+  #[[ -n $(git ls-files --others --exclude-standard) ]] ; then
+  hook_com[staged]+='!' # signify new files with a bang
+  fi
+}
+
+zstyle ':vcs_info:*' check-for-changes true
+# zstyle ':vcs_info:git:*' formats " %r/%S %b %m%u%c "
+zstyle ':vcs_info:git:*' formats " %{$fg[blue]%}(%{$fg[red]%}%m%u%c%{$fg[yellow]%}%{$fg[magenta]%} %b%{$fg[blue]%})"
+
+# agstr
+# PROMPT="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%m%{$fg[red]%}] %(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )%{$fg[cyan]%}%c%{$reset_color%}"
+# PROMPT="%B%{$fg[reset_color]%}[%{$fg[reset_color]%}%n%{$fg[reset_color]%}@%{$fg[reset_color]%}%m%{$fg[reset_color]%}] %(?:%{$fg_bold[reset_color]%}➜ :%{$fg_bold[reset_color]%}➜ )%{$fg[reset_color]%}%c%{$reset_color%}"
+PROMPT="%{$fg[yellow]%}%(!.#.⟩⟩⟩ )% %{$fg[cyan]%}%c%{$reset_color%}"
+
+# c@m
+# PROMPT="%B%{$fg[blue]%}[%{$fg[white]%}%n%{$fg[red]%}@%{$fg[white]%}%m%{$fg[blue]%}] %(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )%{$fg[cyan]%}%c%{$reset_color%}"
+
+# lukesmith
+# PROMPT="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b"
+
+setopt autocd		# Automatically cd into typed directory.
+stty stop undef		# Disable ctrl-s to freeze terminal.
+setopt interactive_comments
+
+PROMPT+="\$vcs_info_msg_0_ "

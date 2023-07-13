@@ -1,0 +1,189 @@
+#!/bin/zsh
+
+# Remove background color while listing mounted file
+eval "$(dircolors -b ~/.config/zsh/.dircolors)"
+
+# History in cache directory:
+HISTSIZE=10000000
+SAVEHIST=10000000
+HISTFILE=~/.cache/.zsh_history
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_FIND_NO_DUPS
+setopt HIST_SAVE_NO_DUPS
+
+# some useful options (man zshoptions)
+setopt autocd extendedglob nomatch menucomplete
+setopt interactive_comments
+unsetopt PROMPT_SP
+stty stop undef		# Disable ctrl-s to freeze terminal.
+zle_highlight=('paste:none')
+
+# Basic auto/tab complete:
+autoload -U compinit
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)		# Include hidden files.
+
+# vi mode
+bindkey -v
+export KEYTIMEOUT=1
+
+# Use vim keys in tab complete menu:
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -v '^?' backward-delete-char
+
+# Useful for substring completion history
+# bindkey "^K" history-beginning-search-backward
+# bindkey "^J" history-beginning-search-forward
+bindkey "^P" history-beginning-search-backward
+bindkey "^N" history-beginning-search-forward
+# Disabling ctrl j,k. It causes auto enter not work
+
+# Move cursor back/forward word with ctrl-<left,right>
+bindkey "^[[1;5D" backward-word
+bindkey "^[[1;5C" forward-word
+
+# Delete per word with ctrl-<backspace,delete>
+bindkey "^H" backward-delete-word
+bindkey "^[[M" delete-word
+bindkey '^[[P' delete-char
+bindkey '^[[3~' delete-char
+
+# Change cursor shape for different vi modes.
+function zle-keymap-select () {
+case $KEYMAP in
+  vicmd) echo -ne '\e[1 q';;      # block
+  viins|main) echo -ne '\e[5 q';; # beam
+esac
+}
+zle -N zle-keymap-select
+zle-line-init() {
+zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+echo -ne "\e[5 q"
+}
+zle -N zle-line-init
+echo -ne '\e[5 q' # Use beam shape cursor on startup.
+preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+
+# Use lf to switch directories and bind it to ctrl-o
+lfcd () {
+  tmp="$(mktemp -uq)"
+  trap 'rm -f $tmp >/dev/null 2>&1 && trap - HUP INT QUIT TERM PWR EXIT' HUP INT QUIT TERM PWR EXIT
+  lf -last-dir-path="$tmp" "$@"
+  if [ -f "$tmp" ]; then
+    dir="$(cat "$tmp")"
+    [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+  fi
+}
+bindkey -s '^o' '^ulfcd\n'
+bindkey -s '^s' '^usource $HOME/.config/zsh/.zshrc\n'
+bindkey -s '^y' '^ubc -lq\n'
+bindkey -s '^f' '^ucd "$(dirname "$(fzf)")"\n'
+
+# Edit line in vim with ctrl-e:
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^e' edit-command-line
+bindkey -M vicmd '^[[P' vi-delete-char
+bindkey -M vicmd '^e' edit-command-line
+bindkey -M visual '^[[P' vi-delete
+
+# Add this to easily extract compressed files, use `xtract <filename>`
+xtract() {
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)   tar xvjf $1     ;;
+      *.tar.gz)    tar xvzf $1     ;;
+      *.bz2)       bunzip2 $1      ;;
+      *.rar)       unrar x $1      ;;
+      *.gz)        gunzip $1       ;;
+      *.tar)       tar xvf $1      ;;
+      *.tbz2)      tar xvjf $1     ;;
+      *.tgz)       tar xvzf $1     ;;
+      *.zip)       unzip $1        ;;
+      *.Z)         uncompress $1   ;;
+      *.7z)        7z x $1         ;;
+      *)           echo "'$1' cannot be extracted via >extract<" ;;
+    esac
+  else
+    echo "'$1' is not a valid file!"
+  fi
+}
+
+## zsh abbreviation start
+# declare a list of expandable aliases to fill up later
+typeset -a ealiases
+ealiases=()
+
+# write a function for adding an alias to the list mentioned above
+function abbrev-alias() {
+alias $1
+ealiases+=(${1%%\=*})
+}
+
+# expand any aliases in the current line buffer
+function expand-ealias() {
+if [[ $LBUFFER =~ "\<(${(j:|:)ealiases})\$" ]]; then
+  zle _expand_alias
+  zle expand-word
+fi
+zle magic-space
+}
+zle -N expand-ealias
+
+# Bind the space key to the expand-alias function above, so that space will expand any expandable aliases
+bindkey ' '        expand-ealias
+bindkey '^ '       magic-space     # control-space to bypass completion
+bindkey -M isearch " "      magic-space     # normal space during searches
+
+# A function for expanding any aliases before accepting the line as is and executing the entered command
+expand-alias-and-accept-line() {
+expand-ealias
+zle .backward-delete-char
+zle .accept-line
+}
+zle -N accept-line expand-alias-and-accept-line
+
+# aliases
+abbrev-alias sz="source $HOME/.config/zsh/.zshrc"
+abbrev-alias g="git"
+abbrev-alias gst="git status"
+abbrev-alias ll="ls -l"
+abbrev-alias lm="lampstatus"
+abbrev-alias lsuser="awk -F':' '{ print $1}' /etc/passwd"
+abbrev-alias lsgroup="cut -d: -f1 /etc/group | sort"
+abbrev-alias refont="sudo fc-cache -fv"
+abbrev-alias cekbat="pidof -x lbnrunner && pidof -x lbnscript"
+abbrev-alias tn="tmux new-session -s "
+abbrev-alias tk="tmux kill-session -t "
+abbrev-alias trn="tmux rename-session -t "
+abbrev-alias tc="tmux attach-session -t "
+abbrev-alias mp4tomp3="ffmpeg -i video.mp4 -vn -acodec libmp3lame -ac 2 -ab 160k -ar 48000 audio.mp3"
+abbrev-alias mp3toogg="ffmpeg audio.mp3 -vn audio.ogg"
+abbrev-alias mkvtomp4="ffmpeg -i video.mkv video.mp4 -qscale 0"
+abbrev-alias avitomp4="ffmpeg -i video.avi video.mp4 -qscale 0"
+abbrev-alias mp4togif="ffmpeg -i video.mp4 video.gif"
+abbrev-alias mp4togifdefineduration="ffmpeg -i video.mp4 -ss 00:00:06<start-time> -t 4<duration> video.gif"
+abbrev-alias webcamrecord="ffmpeg -y -i /dev/video0 output.mkv"
+abbrev-alias mkslideshow="cat folder/* | ffmpeg -y -framerate 1.5 -f image2pipe -i - -i sound.ogg -acodec copy output.mkv"
+## zsh abbreviation end
+
+# Sourcing file in $ZDOTDIR
+function zsh_add_file() {
+  [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
+}
+zsh_add_file "aliases"
+zsh_add_file "prompt"
+zsh_add_file "shortcuts"
+
+# Sourcing plugins cloned in $ZPLUGDIR
+source $ZPLUGDIR/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null
+source $ZPLUGDIR/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh 2>/dev/null
+source $ZPLUGDIR/zsh-autopair/autopair.plugin.zsh 2>/dev/null

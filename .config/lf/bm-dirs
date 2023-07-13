@@ -1,0 +1,15 @@
+# You can add comments to these files with #
+cac $HOME/.cache
+cf  $HOME/.config
+dw  $HOME/Downloads
+dc  $HOME/Documents
+shr $HOME/.local/share
+src $HOME/.local/src
+hm  $HOME
+msc $HOME/Music
+mn  /mnt
+px  $HOME/Pictures
+bn  $HOME/.local/bin
+fnt $HOME/.local/share/fonts
+wll $HOME/.local/share/wallpapers/
+vv  $HOME/Videos

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [[ -x '/usr/bin/betterlockscreen' || -x '/usr/local/bin/betterlockscreen' ]]; then
+  betterlockscreen -l
+elif [[ -x '/usr/bin/i3lock' ]]; then
+  i3lock -f -c 000000
+fi
+

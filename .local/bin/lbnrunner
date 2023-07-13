@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if pidof -x "lbnscript" > /dev/null; then
+  exit
+else
+  sleep 2 && ~/.local/bin/lbnscript &
+  exit
+fi

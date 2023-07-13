@@ -1,0 +1,98 @@
+# Check :swaymsg -t get_tree | grep "app_id"
+#
+# Assign workspaces
+assign [app_id="firefox"] 2
+for_window [app_id="firefox"] focus
+
+assign [class="Gimp-2.10"] 6
+for_window [class="Gimp-2.10"] focus
+
+assign [app_id="org.inkscape.Inkscape"] 7
+for_window [app_id="org.inkscape.Inkscape"] focus
+
+assign [app_id="com.obsproject.Studio"] 8
+for_window [app_id="com.obsproject.Studio"] focus
+
+assign [class="jetbrains-(.*)"] → workspace 3
+
+assign [class="firefox"] 2
+for_window [class="firefox"] focus
+
+for_window [app_id="sp-term|sp-lf|sp-cal|sp-mus|sp-nmt"] floating enable
+
+# assign [app_id=thunar] 3
+# for_window [app_id=thunar] focus
+
+assign [app_id="org.telegram.desktop(.*)"] 4
+for_window [app_id="org.telegram.desktop(.*)"] floating enable, resize set width 60 ppt height 75 ppt, focus
+
+for_window [app_id="xed"] focus
+
+# set floating (nontiling)for apps needing it:
+for_window [class="Yad" instance="yad"] floating enable
+for_window [app_id="yad"] floating enable
+for_window [app_id="galculator"] floating enable
+for_window [app_id="mirage"] floating enable, resize set width 75 ppt height 80 ppt
+for_window [app_id="file-roller"] floating enable, resize set width 50 ppt height 65 ppt
+for_window [app_id="blueman-manager"] floating enable, resize set width 40 ppt height 30 ppt
+for_window [app_id="system-config-printer"] floating enable, resize set width 35 ppt height 40 ppt
+
+# set floating (nontiling) for special apps:
+for_window [class="Xsane" instance="xsane"] floating enable
+for_window [app_id="pavucontrol" ] floating enable, resize set width 40 ppt height 30 ppt
+for_window [class="qt5ct" instance="qt5ct"] floating enable, resize set width 60 ppt height 50 ppt
+for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
+for_window [app_id="pamac-manager"] floating enable, resize set width 80 ppt height 70 ppt
+for_window [class="Lxappearance"] floating enable, resize set width 60 ppt height 50 ppt
+
+# Brave, chrome, chromium
+for_window [title="Picture-in-picture"] floating enable
+
+# Jetbrains popup float fixes
+for_window [class="jetbrains-(.*)" title="Go to Line/Column"] floating enable
+for_window [class="jetbrains-(.*)" title="Rename"] floating enable
+for_window [class="jetbrains-(.*)" title="Open Project"] floating enable
+for_window [class="jetbrains-(.*)" title="splash"] floating enable
+
+for_window [app_id="firefox" title="Pushbullet"] floating enable
+for_window [app_id="firefox" title="Firefox — Sharing Indicator"] floating enable
+for_window [app_id="firefox" title="Picture-in-Picture"] floating enable
+for_window [app_id="firefox" title="Pushbullet – Mozilla Firefox"] floating enable
+for_window [app_id="firefox" title="About Mozilla Firefox"] floating enable
+for_window [app_id="telegram-desktop_telegram-desktop"] floating enable
+
+# Wayland default floats
+for_window [app_id="gnome-(power-statistics)"] floating enable
+for_window [app_id="org.gnome.(Calculator|Calendar|Settings|Nautilus|Weather)"] floating enable
+for_window [app_id="(pavucontrol|psensor)"] floating enable
+for_window [app_id="evolution-alarm-notify"] floating enable
+for_window [app_id="nemo"] floating enable
+for_window [app_id="solaar"] floating enable
+for_window [app_id="evolution" title="Compose Message"] floating enable
+for_window [app_id="evolution" title="Re(.*)"] floating enable
+for_window [app_id="evolution" title="Fwd(.*)"] floating enable
+# for_window [app_id="(mpv|com\.github\.rafostar\.Clapper)"] floating enable
+# for_window [app_id="(mpv|com\.github\.rafostar\.Clapper)"] resize set 960 540
+# for_window [app_id="(mpv|com\.github\.rafostar\.Clapper)"] border pixel 0
+
+# set floating for window roles
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+for_window [window_role="About"] floating enable
+for_window [title="File Operation Progress"] floating enable, border pixel 1, sticky enable, resize set width 40 ppt height 30 ppt
+for_window [app_id="firefox" title="^Library$"] floating enable, border pixel 1, sticky enable, resize set width 40 ppt height 30 ppt
+for_window [app_id="floating_shell_portrait"] floating enable, border pixel 1, sticky enable, resize set width 30 ppt height 40 ppt
+for_window [title="Picture in picture"] floating enable, sticky enable
+for_window [title="nmtui"] floating enable,  resize set width 50 ppt height 70 ppt
+for_window [title="htop"] floating enable, resize set width 50 ppt height 70 ppt
+for_window [app_id="xsensors"] floating enable
+for_window [title="Save File"] floating enable
+for_window [app_id="firefox" title="Firefox — Sharing Indicator"] kill
+
+# Inhibit idle
+for_window [app_id="firefox"] inhibit_idle fullscreen
+for_window [app_id="Chromium"] inhibit_idle fullscreen

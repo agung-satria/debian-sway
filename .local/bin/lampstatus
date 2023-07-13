@@ -1,0 +1,17 @@
+#!/bin/bash
+
+apachestatus="$(sudo systemctl status apache2.service | awk 'NR==3 { print $2 }')"
+mariadbstatus="$(sudo systemctl status mariadb.service | awk 'NR==3 { print $2 }')"
+# echo -e "\033[33mLAMP Control Panel\033[0m"
+if [ $apachestatus = "inactive" ]; then
+    echo -e "Apache : \033[31m$apachestatus\033[0m"
+else
+    echo -e "Apache : \033[92m$apachestatus (running)\033[0m"
+fi
+if [ $mariadbstatus == "failed" ]; then
+    echo -e "MariaDB: \033[31minactive\033[0m"
+elif [ $mariadbstatus == "inactive" ]; then
+    echo -e "MariaDB: \033[31minactive\033[0m"
+else
+    echo -e "MariaDB: \033[92m$mariadbstatus (running)\033[0m"
+fi

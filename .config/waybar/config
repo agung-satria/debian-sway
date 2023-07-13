@@ -1,0 +1,218 @@
+{
+    "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 26, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    // "gtk-layer-shell": "false",
+    // Choose the order of the modules
+    // "modules-left": ["sway/workspaces", "custom/scratchpad", "sway/mode", "tray", "sway/window"],
+    "modules-left": ["sway/workspaces", "custom/scratchpad", "sway/mode"],
+    "modules-center": [], 
+    // "modules-center": ["sway/window"],
+    //"modules-right": ["network", "cpu", "memory", "temperature", "backlight", "battery", "battery#bat2", "pulseaudio", "custom/layout", "clock"],
+    "modules-right": ["tray", "custom/blank", "custom/blank", "custom/sep" ,"cpu", "memory", "battery", "battery#bat2", "pulseaudio", "custom/layout", "clock"],
+    //"modules-right": ["cpu", "memory", "battery", "battery#bat2", "pulseaudio", "custom/layout", "clock", "tray", "custom/blank"],
+    "sway/mode": {
+        "format": " {}"
+    },
+   // "sway/workspaces": {
+   //     "all-outputs": false,
+   //     "disable-scroll": true,
+   //     "format": " {icon} ",
+   //     // "format-icons": {
+   //     //     "urgent": "",
+   //     //     "focused": "",
+   //     //     "default": ""
+   //     // }
+   //     "format-icons": {
+   //         "urgent": "",
+   //         "focused": "",
+   //         "default": ""
+   //     }
+   // },
+     // "sway/workspaces": {
+     //     "disable-scroll": true,
+     //     "all-outputs": true,
+     //     "warp-on-scroll": false,
+     //     "format": "{name}: {icon}",
+     //     "format-icons": {
+     //         "1": "",
+     //         "2": "",
+     //         "4": "",
+     //         "urgent": "",
+     //         //"focused": "",
+     //         "focused": "",
+     //         "default": ""
+     //     }
+     // },
+    "sway/window": {
+        "max-length": 80,
+        "tooltip": false
+    },
+    "custom/layout": {
+        "tooltip": false,
+        "exec": "swaymsg -mrt subscribe '[\"input\"]' | jq -r --unbuffered \"select(.change == \\\"xkb_layout\\\") | .input | select(.type == \\\"keyboard\\\") | .xkb_active_layout_name | .[0:2]\""
+    },
+    "custom/sep": {
+        "format": "⁝⁝",
+    },
+    "custom/blank": {
+        "format": " ",
+    },
+    // Modules configuration
+    //  "sway/workspaces": {
+    //     "disable-scroll": true,
+    //     "all-outputs": true,
+    //     "format": "{name}: {icon}",
+    //     "format-icons": {
+    //         "1": "",
+    //         "2": "",
+    //         "3": "",
+    //         "4": "",
+    //         "5": "",
+    //         "urgent": "",
+    //         "focused": "",
+    //         "default": ""
+    //     }
+    // },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        } 
+    },
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 8,
+    },
+    //"clock": {
+    //    "timezone": "Asia/Jakarta",
+    //    // "format": " {:%b %d %Y %R}",
+    //    "format": " {:%a, %d %b %I:%M %p}",
+    //    "tooltip-format": "<span color='#35b9ab'><big>{:%Y %B}</big></span>\n<span color='#35b9ab'><tt><small>{calendar}</small></tt></span>",
+    //    "format-alt": "{:%a %d %b w:%V %H:%M}",
+    //    "today-format": "<span background='#E3FE0E' color='#21a4df'><b><u>{}</u></b></span>",
+    //    "calendar-weeks-pos": "left",
+    //    "format-calendar": "<span background='#173f4f' bgalpha='60%'><b>{}</b></span>",
+    //    "format-calendar-weeks": "<span color='#73ba25'><b>{}</b></span>",
+    //    "format-calendar-weekdays": "<span color='#21a4df'><b>{}</b></span>",
+    //    "interval": 10
+    //},
+    "clock": {
+        "timezone": "Asia/Jakarta",
+        // "format": " {:%b %d %Y %R}",
+        "format": " {:%a, %d %b %I:%M %p}",
+        "tooltip-format": "<span color='#D1D1D1'><big>{:%Y %B}</big></span>\n<span color='#D1D1D1'><tt><small>{calendar}</small></tt></span>",
+        "format-alt": "{:%a %d %b w:%V %H:%M}",
+        "today-format": "<span background='#E7FE2F' color='#080811'><b><u>{}</u></b></span>",
+        "calendar-weeks-pos": "left",
+        "format-calendar": "<span><b>{}</b></span>",
+        "format-calendar-weeks": "<span color='#64CF28'><b>{}</b></span>",
+        "format-calendar-weekdays": "<span color='#54D1E1'><b>{}</b></span>",
+        "interval": 10
+    },
+    "cpu": {
+        "format": " {usage}%",
+        "tooltip": false
+    },
+    "memory": {
+        // "format": "{}% "
+        "format": " {}%"
+    },
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", ""]
+    },
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{percent}% {icon}",
+       // "format-icons": ["", ""]
+      "format-icons": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      },
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 15,
+            "critical": 10
+        },
+        "format": "{icon} {capacity}%",
+        // "format-charging": "",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon} {capacity}% {time}",
+        "format-icons": [" ", " ", " ", " ", " "]
+        // "format-icons": ["󰁹", "󰁹", "󰁹", "󰁹", "󰁹"]
+    },
+    "battery#bat2": {
+        "bat": "BAT2"
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": " ",
+        "format-ethernet": "",
+        "format-linked": "",
+        // "format-disconnected": "⚠",
+        "format-disconnected": " Offline",
+        "format-alt": "{ifname} {essid} ({signalStrength}%)"
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}",
+        // "format-alt": "{icon} {volume}",
+        // "format-alt-click": "click-right",
+        // "format-muted": "",
+        "format-muted": "🔇",
+        "format-icons": {
+            "headphones": "",
+            "handsfree": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "scroll-step": 10,
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "pavucontrol",
+        "tooltip": false
+    },
+    "custom/scratchpad": {
+        "format-text": "{}",
+        "return-type": "json",
+        "interval": 3,
+        "exec": "scratchpad-indicator.sh 2> /dev/null",
+        "exec-if": "exit 0",
+        "on-click": "swaymsg 'scratchpad show'",
+        "on-click-right": "swaymsg 'move scratchpad'"
+    },
+    "custom/notification": {
+	"tooltip": true,
+	"format": "{icon}",
+	"format-icons": {
+	     "notification": "<span foreground='red'><small><sup>⬤</sup></small></span>",
+	     "none": " ",
+	     "dnd-notification": "<span foreground='red'><small><sup>⬤</sup></small></span>",
+	     "dnd-none": " "
+	},
+	"return-type": "json",
+	"exec-if": "which swaync-client",
+	"exec": "swaync-client -swb",
+	"on-click": "swaync-client -t -sw",
+	"on-click-right": "swaync-client -d -sw",
+	"escape": true
+   }
+}

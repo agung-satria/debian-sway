@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+winclass="$(xdotool search --class sp-mus)";
+if [ -z "$winclass" ]; then
+  $TERMINAL --class sp-mus -e ncmpcpp
+else
+  if [ ! -f /tmp/sp-mus ]; then
+    touch /tmp/sp-mus && xdo hide "$winclass"
+  elif [ -f /tmp/sp-mus ]; then
+    rm /tmp/sp-mus && xdo show "$winclass"
+  fi
+fi
