@@ -104,7 +104,7 @@
         // "format": " {:%b %d %Y %R}",
         "format": " {:%a, %d %b %I:%M %p}",
         "tooltip-format": "<span color='#D1D1D1'><big>{:%Y %B}</big></span>\n<span color='#D1D1D1'><tt><small>{calendar}</small></tt></span>",
-        "format-alt": "{:%a %d %b w:%V %H:%M}",
+        //"format-alt": "{:%a %d %b w:%V %H:%M}",
         "today-format": "<span background='#E7FE2F' color='#080811'><b><u>{}</u></b></span>",
         "calendar-weeks-pos": "left",
         "format-calendar": "<span><b>{}</b></span>",
