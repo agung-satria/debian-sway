@@ -1,0 +1,14 @@
+#!/bin/sh
+
+TOGGLE=$HOME/.cache/.toggle_sunset
+
+if [ ! -e $TOGGLE ]; then
+    touch $TOGGLE
+    # notify-send -r "9393" "wlsunset" "latitude 39.9 longtitude 116.3"
+    wlsunset -l 39.9 -L 116.3 2>/dev/null
+else
+    rm $TOGGLE
+    # notify-send -r "9393" "wlsunset" "default (temp 6500)"
+    wlsunset -T 6500 2>/dev/null
+fi
+

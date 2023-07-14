@@ -193,6 +193,9 @@ bindsym $mod+ctrl+Print exec grimshot --notify save area
 # Screen record
 bindsym $mod+Shift+r exec $term -e wf-recorder -a -f $HOME/$(date +"Screenrecord_%Y-%m-%d_%H-%M-%S.mp4")
 
+### wlsunset (resshift altenative)
+bindsym $mod+F7 exec toggle-sunset
+
 #
 # Moving around:
 #

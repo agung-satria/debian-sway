@@ -37,6 +37,9 @@ sudo apt install -y sudo apt install
 ### Clipboard manager
 sudo apt install -y  clipman
 
+### Redshift replacement for wayland
+sudo apt install -y wlsunset
+
 ### https://github.com/jgmdev/wl-color-picker
 [ ! -d "~/.stuff/" ] && mkdir -p ~/.stuff && cd ~/.stuff
 sudo apt install -y grim grimshot slurp imagemagick zenity wl-clipboard
