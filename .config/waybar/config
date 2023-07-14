@@ -10,7 +10,7 @@
     "modules-center": [], 
     // "modules-center": ["sway/window"],
     //"modules-right": ["network", "cpu", "memory", "temperature", "backlight", "battery", "battery#bat2", "pulseaudio", "custom/layout", "clock"],
-    "modules-right": ["tray", "custom/blank", "custom/blank", "custom/sep" ,"cpu", "memory", "battery", "battery#bat2", "pulseaudio", "custom/layout", "clock"],
+    "modules-right": ["tray", "custom/blank", "custom/sep" ,"cpu", "memory", "battery", "battery#bat2", "pulseaudio", "custom/layout", "clock"],
     //"modules-right": ["cpu", "memory", "battery", "battery#bat2", "pulseaudio", "custom/layout", "clock", "tray", "custom/blank"],
     "sway/mode": {
         "format": " {}"
@@ -154,7 +154,7 @@
         // "format-charging": "",
         "format-charging": " {capacity}%",
         "format-plugged": " {capacity}%",
-        "format-alt": "{icon} {capacity}% {time}",
+        //"format-alt": "{icon} {capacity}% {time}",
         "format-icons": [" ", " ", " ", " ", " "]
         // "format-icons": ["󰁹", "󰁹", "󰁹", "󰁹", "󰁹"]
     },

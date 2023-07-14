@@ -15,9 +15,6 @@ for_window [app_id="com.obsproject.Studio"] focus
 
 assign [class="jetbrains-(.*)"] → workspace 3
 
-assign [class="firefox"] 2
-for_window [class="firefox"] focus
-
 for_window [app_id="sp-term|sp-lf|sp-cal|sp-mus|sp-nmt"] floating enable
 
 # assign [app_id=thunar] 3
@@ -26,6 +23,9 @@ for_window [app_id="sp-term|sp-lf|sp-cal|sp-mus|sp-nmt"] floating enable
 assign [app_id="org.telegram.desktop(.*)"] 4
 for_window [app_id="org.telegram.desktop(.*)"] floating enable, resize set width 60 ppt height 75 ppt, focus
 
+assign [class="xdman-Main"] 10
+for_window [class="xdman-Main" instance="xdman-Main"] floating enable
+
 for_window [app_id="xed"] focus
 
 # set floating (nontiling)for apps needing it:
@@ -33,6 +33,7 @@ for_window [class="Yad" instance="yad"] floating enable
 for_window [app_id="yad"] floating enable
 for_window [app_id="galculator"] floating enable
 for_window [app_id="mirage"] floating enable, resize set width 75 ppt height 80 ppt
+for_window [class="Sxiv"] floating enable, resize set width 1280 height 720 
 for_window [app_id="file-roller"] floating enable, resize set width 50 ppt height 65 ppt
 for_window [app_id="blueman-manager"] floating enable, resize set width 40 ppt height 30 ppt
 for_window [app_id="system-config-printer"] floating enable, resize set width 35 ppt height 40 ppt
@@ -59,7 +60,6 @@ for_window [app_id="firefox" title="Firefox — Sharing Indicator"] floating ena
 for_window [app_id="firefox" title="Picture-in-Picture"] floating enable
 for_window [app_id="firefox" title="Pushbullet – Mozilla Firefox"] floating enable
 for_window [app_id="firefox" title="About Mozilla Firefox"] floating enable
-for_window [app_id="telegram-desktop_telegram-desktop"] floating enable
 
 # Wayland default floats
 for_window [app_id="gnome-(power-statistics)"] floating enable
@@ -71,9 +71,9 @@ for_window [app_id="solaar"] floating enable
 for_window [app_id="evolution" title="Compose Message"] floating enable
 for_window [app_id="evolution" title="Re(.*)"] floating enable
 for_window [app_id="evolution" title="Fwd(.*)"] floating enable
-# for_window [app_id="(mpv|com\.github\.rafostar\.Clapper)"] floating enable
-# for_window [app_id="(mpv|com\.github\.rafostar\.Clapper)"] resize set 960 540
-# for_window [app_id="(mpv|com\.github\.rafostar\.Clapper)"] border pixel 0
+for_window [app_id="mpv"] floating enable
+for_window [app_id="mpv"] resize set 1280 720
+for_window [app_id="mpv"] border pixel 0
 
 # set floating for window roles
 for_window [window_role="pop-up"] floating enable
