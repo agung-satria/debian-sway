@@ -164,6 +164,9 @@ bindsym $mod+Shift+w exec $BROWSER --private-window
 bindsym $mod+g exec geany
 bindsym $mod+F4 exec pavucontrol
 
+# MPV cam
+bindsym $mod+F11 exec mpvcam
+
 ### Color picker
 # Get RGB code
 bindsym $mod+y exec wl-color-picker clipboard

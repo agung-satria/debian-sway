@@ -78,7 +78,7 @@ sudo apt install -y mirage sxiv
 ### Music/media player packages
 sudo apt install -y mpc mpd ncmpcpp mpv
 
-### firefox dependencies
+### firefox dependencies (build instruction at the on of this script)
 sudo apt install -y libdbus-glib-1-2
 
 ### Tmux and plugins
@@ -111,7 +111,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions
 git clone https://github.com/hlissner/zsh-autopair.git
 
 ### Copy config
-cp -r ~/.dotfiles/.config/{alacritty,calcurse,lf,mako,mpd,mpv,ncmpcpp,sway,swaylock,swaync,tmux,waybar,wob,wofi,zathura,zsh} ~/.config
+cp -r ~/.dotfiles/.config/* ~/.config
 
 cd ~/
 cp -r ~/.dotfiles/.local/bin/ ~/.local/
@@ -161,15 +161,16 @@ printf "\e[1;32mYou can now reboot! after login in tty1, it will auto start SWAY
 ### Firefox (binary)
 ## Build firefox:
 # sudo apt install -y libdbus-glib-1-2 # require dependencies
-# read: https://support.mozilla.org/en-US/kb/install-firefox-linux
-# or this is the step:
+# download firefox*.tar.bz2: wget https://download-installer.cdn.mozilla.net/pub/firefox/releases/115.0.2/linux-x86_64/en-US/firefox-115.0.2.tar.bz2
+# if link not working (version changed), download from: https://support.mozilla.org/en-US/kb/install-firefox-linux
+# step:
 # - download source code from official website
 # - extract the file: tar xjf firefox-*.tar.bz2
 # - mv firefox /opt
 # - ln -s /opt/firefox/firefox /usr/local/bin/firefox
 # - download .desktop file: wget https://raw.githubusercontent.com/mozilla/sumo-kb/main/install-firefox-linux/firefox.desktop
 # - sudo mv firefox.desktop /usr/share/applications/
-# nice....
+# done....
 
 ### OBS Studio (if needed)
 # sudo apt install -y qt6-wayland
@@ -182,3 +183,60 @@ printf "\e[1;32mYou can now reboot! after login in tty1, it will auto start SWAY
 # sudo apt-add-repository contrib non-free -y
 # sudo apt install ttf-mscorefonts-installer
 # sudo fc-cache -fv
+
+### Samba
+# sudo apt install -y samba smbclient cifs-utils
+# sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bak
+#
+##Method 1) Using existing user (currently used)
+# mkdir -p /home/agung/shares/{public_files,protected_files}
+#
+##Method 2) Create new smbgroup and smbuser
+# sudo mkdir -p /share/{public_files,protected_files}
+# sudo groupadd --system smbgroup
+# sudo useradd --system --no-create-home --group smbgroup -s /bin/false smbuser
+# sudo chown -R smbuser:smbgroup /shares
+# 
+## Create config file:
+# sudo nvim /etc/samba/smb.conf
+#
+# Remove comment based on method you are using
+#
+#############^ smb.conf ^#############
+#[global]
+#server string = File Server
+#workgroup = WORKGROUP
+#security = user
+#map to guest = Bad User
+#name resolve order = bcast host
+
+#[Public Files]
+##path = /shares/public_files
+##path = /home/agung/shares/public_files
+##force user = smbuser
+##force group = smbgroup
+##force user = agung
+##force group = agung
+#create mask = 0664
+#force create mode = 0664
+#directory mask = 0775
+#force directory mode = -775
+#public = yes
+#writable = yes
+
+#[Protected Files]
+##path = /shares/protected_files
+##path = /home/agung/shares/protected_files
+##force user = smbuser
+##force group = smbgroup
+##force user = agung
+##force group = agung
+#create mask = 0664
+#force create mode = 0664
+#directory mask = 0775
+#force directory mode = -775
+#public = yes
+#writable = no
+#############_ smb.conf _#############
+#
+# sudo systemctl restart smbd

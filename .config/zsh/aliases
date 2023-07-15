@@ -43,6 +43,8 @@ alias \
 
 # LAMP services
 alias \
+  startlamp="sudo systemctl start apache2.service && sudo systemctl start mariadb.service && lampstatus" \
+  stoplamp="sudo systemctl stop apache2.service && sudo systemctl stop mariadb.service && lampstatus" \
   startapache="sudo systemctl start apache2.service && lampstatus" \
   stopapache="sudo systemctl stop apache2.service && lampstatus" \
   restartapache="sudo systemctl restart apache2.service && lampstatus" \
