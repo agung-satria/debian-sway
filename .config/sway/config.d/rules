@@ -15,8 +15,6 @@ for_window [app_id="com.obsproject.Studio"] focus
 
 assign [class="jetbrains-(.*)"] → workspace 3
 
-for_window [app_id="sp-term|sp-lf|sp-cal|sp-mus|sp-nmt"] floating enable
-
 # assign [app_id=thunar] 3
 # for_window [app_id=thunar] focus
 
@@ -66,7 +64,7 @@ for_window [app_id="gnome-(power-statistics)"] floating enable
 for_window [app_id="org.gnome.(Calculator|Calendar|Settings|Nautilus|Weather)"] floating enable
 for_window [app_id="(pavucontrol|psensor)"] floating enable
 for_window [app_id="evolution-alarm-notify"] floating enable
-for_window [app_id="nemo"] floating enable
+for_window [app_id="thunar"] floating enable, resize set width 1234 px height 720 px
 for_window [app_id="solaar"] floating enable
 for_window [app_id="evolution" title="Compose Message"] floating enable
 for_window [app_id="evolution" title="Re(.*)"] floating enable
