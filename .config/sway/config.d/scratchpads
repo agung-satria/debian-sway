@@ -1,45 +1,20 @@
-# exec scratchpad on start and hide
-
-set $sp-size 1155 715
-
-exec $term --class sp-term
-exec $term --class sp-lf -e lf
-exec $term --class sp-cal -e calcurse
-exec $term --class sp-mus -e ncmpcpp
-exec $term --class sp-nmt -e nmtui
-exec $term --class sp-htop -e htop
-
-for_window [app_id="sp-term"] move scratchpad, resize set $sp-size
-for_window [app_id="sp-lf"] move scratchpad, resize set $sp-size
-for_window [app_id="sp-cal"] move scratchpad, resize set $sp-size
-for_window [app_id="sp-mus"] move scratchpad, resize set $sp-size
-for_window [app_id="sp-nmt"] move scratchpad, resize set $sp-size
-for_window [app_id="sp-htop"] move scratchpad, resize set $sp-size
-
-bindsym $mod+Shift+Return [app_id="sp-term"] scratchpad show
-bindsym $mod+e [app_id="sp-lf"] scratchpad show
-bindsym $mod+c [app_id="sp-cal"] scratchpad show
-bindsym $mod+Shift+m [app_id="sp-mus"] scratchpad show
-bindsym $mod+Ctrl+n [app_id="sp-nmt"] scratchpad show
-bindsym $mod+r [app_id="sp-htop"] scratchpad show
-
-## Regular floating
-# for_window [app_id="sp-term|sp-lf|sp-cal|sp-mus|sp-nmt|sp-htop"] floating enable
-# bindsym $mod+Shift+Return exec $term --class sp-term
-# bindsym $mod+Shift+e exec $term --class sp-lf -e lf
-# bindsym $mod+c exec $term --class sp-cal -e calcurse
-# bindsym $mod+Shift+m exec  $term --class sp-mus -e ncmpcpp
-# bindsym $mod+Ctrl+n exec  $term --class sp-nmt -e nmtui
-
-#
-# Scratchpad:
-#
-    # Sway has a "scratchpad", which is a bag of holding for windows.
-    # You can send windows there and get them back later.
-
-    # Move the currently focused window to the scratchpad
-    # bindsym $mod+Shift+minus move scratchpad
-
-    # Show the next scratchpad window or hide the focused scratchpad window.
-    # If there are multiple scratchpad windows, this command cycles through them.
-    # bindsym $mod+minus scratchpad show
+# # Set size
+# set $sp-size 1155 715
+# # Exec at start
+# exec $term --class sp-term
+# exec $term --class sp-lf -e lf
+# exec $term --class sp-cal -e calcurse
+# exec $term --class sp-mus -e ncmpcpp
+# exec $term --class sp-nmt -e nmtui
+# # And hide it
+# for_window [app_id="sp-term"] move scratchpad, resize set $sp-size
+# for_window [app_id="sp-lf"] move scratchpad, resize set $sp-size
+# for_window [app_id="sp-cal"] move scratchpad, resize set $sp-size
+# for_window [app_id="sp-mus"] move scratchpad, resize set $sp-size
+# for_window [app_id="sp-nmt"] move scratchpad, resize set $sp-size
+# # Keybind to show
+# bindsym $mod+Shift+Return [app_id="sp-term"] scratchpad show
+# bindsym $mod+e [app_id="sp-lf"] scratchpad show
+# bindsym $mod+c [app_id="sp-cal"] scratchpad show
+# bindsym $mod+Shift+m [app_id="sp-mus"] scratchpad show
+# bindsym $mod+Ctrl+n [app_id="sp-nmt"] scratchpad show

@@ -27,11 +27,11 @@ font pango:Hack Nerd Font 12
 set $gnome-schema org.gnome.desktop.interface
 
 exec_always {
-    gsettings set $gnome-schema gtk-theme 'Adwaita-dark'
-    gsettings set $gnome-schema icon-theme 'Qogir-dark'
-    gsettings set $gnome-schema cursor-theme 'Adwaita'
-    gsettings set $gnome-schema cursor-size '28'
-    gsettings set $gnome-schema font-name 'SF Pro Display 12'
+  gsettings set $gnome-schema gtk-theme 'Adwaita-dark'
+  gsettings set $gnome-schema icon-theme 'Qogir-dark'
+  gsettings set $gnome-schema cursor-theme 'Adwaita'
+  gsettings set $gnome-schema cursor-size '28'
+  gsettings set $gnome-schema font-name 'SF Pro Display 12'
 }
 
 # Hide title bar
@@ -52,10 +52,10 @@ output * bg ~/.local/share/wallpapers/road985.jpg fill
 
 # Idle configuration
 exec swayidle -w\
-    timeout 600 'swaylock -f -C ~/.config/swaylock/config'\
-    timeout 300 'swaymsg "output * dpms off"' \
-    resume 'swaymsg "output * dpms on"' \
-    before-sleep 'swaylock -C ~/.config/swaylock/config'
+  timeout 600 'swaylock -f -C ~/.config/swaylock/config'\
+  timeout 300 'swaymsg "output * dpms off"' \
+  resume 'swaymsg "output * dpms on"' \
+  before-sleep 'swaylock -C ~/.config/swaylock/config'
 # This will turn off your display after 300 seconds (5 minutes) of inactivity,
 # and then lock your screen after another 5 minutes, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
@@ -64,15 +64,15 @@ exec swayidle -w\
 # Example configuration:
 #input "2:14:SynPS/2_Synaptics_TouchPad" {
 input type:touchpad {
-    dwt enabled
-    tap enabled
-    natural_scroll enabled
-    middle_emulation enabled
+  dwt enabled
+  tap enabled
+  natural_scroll enabled
+  middle_emulation enabled
 }
 
 input "1:1:AT_Translated_Set_2_keyboard" {
-    repeat_rate 50
-    repeat_delay 240
+  repeat_rate 50
+  repeat_delay 240
 }
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
@@ -80,41 +80,45 @@ input "1:1:AT_Translated_Set_2_keyboard" {
 
 ### Key bindings
 # Basics:
-    # Start a terminal
-    bindsym $mod+Return exec $term
-    bindsym $mod+Ctrl+Return exec $term -e runtmux
+  # Start a terminal
+  bindsym $mod+Return exec $term
+  bindsym $mod+Ctrl+Return exec $term -e runtmux
 
-    # Kill focused window
-    bindsym $mod+q kill
+  # Kill focused window
+  bindsym $mod+q kill
 
-    # Start your launcher
-    bindsym $mod+d exec $menu
-    bindsym $mod+x exec swaylock -f -C ~/.config/swaylock/config
-    bindsym $mod+b exec toggle-waybar
-    bindsym $mod+grave exec ~/.config/wofi/wofi-emoji
-    bindsym $alt+Tab exec ~/.config/wofi/windows.py
+  # Start your launcher
+  bindsym $mod+d exec $menu
 
-    # Drag floating window
-    floating_modifier $mod normal
+  # Lockscreen
+  bindsym $mod+x exec swaylock -f -C ~/.config/swaylock/config
 
-    # Reload the configuration file
-    bindsym $mod+Ctrl+q reload
+  # Toggle bar
+  bindsym $mod+b exec toggle-waybar
 
-    # Exit sway
-    bindsym $mod+Shift+Ctrl+q exec swaymsg exit
+  # Cycle app
+  bindsym $alt+Tab exec ~/.config/wofi/windows.py
 
-# Volume and Brightness
+  # Drag floating window
+  floating_modifier $mod normal
+
+  # Reload the configuration file
+  bindsym $mod+Ctrl+q reload
+
+  # Exit sway
+  bindsym $mod+Shift+Ctrl+q exec swaymsg exit
+
+# Volume
 # bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 # bindsym --locked XF86AudioMute exec changevolume mute
 # bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 # bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-
 bindsym XF86AudioRaiseVolume exec pamixer -ui 2 && pamixer --get-volume > $WOBSOCK
 bindsym XF86AudioLowerVolume exec pamixer -ud 2 && pamixer --get-volume > $WOBSOCK
 bindsym XF86AudioMute exec pamixer --toggle-mute && ( [ "$(pamixer --get-mute)" = "true" ] && echo 0 > $WOBSOCK ) || pamixer --get-volume > $WOBSOCK
-
 bindsym --locked XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
+# Brightness
 # bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
 # bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
 bindsym XF86MonBrightnessUp exec light -A 5 && light -G | cut -d'.' -f1 > $WOBSOCK
@@ -127,15 +131,19 @@ bindsym $mod+w exec $BROWSER
 bindsym $mod+Shift+w exec $BROWSER --private-window
 bindsym $mod+g exec geany
 bindsym $mod+F4 exec pavucontrol
-
-# MPV cam
 bindsym $mod+F11 exec mpvcam
+
+# Toggle notifications
+bindsym $mod+z exec swaync-client -t -sw
 
 ### Color picker
 # Get RGB code
 bindsym $mod+y exec wl-color-picker clipboard
 # Get RGB code and open zenity
 bindsym $mod+Shift+y exec wl-color-picker
+
+# Emoji Picker
+bindsym $mod+grave exec ~/.config/wofi/wofi-emoji
 
 ### CLipboard
 bindsym $mod+v exec clipman pick -t wofi
@@ -166,117 +174,107 @@ bindsym $mod+F7 exec wlsunset -T 4200
 # Normal
 bindsym $mod+Shift+F7 exec wlsunset -T 6500
 
-# Moving around:
-    # Move your focus around
-    bindsym $mod+$left focus left
-    bindsym $mod+$down focus down
-    bindsym $mod+$up focus up
-    bindsym $mod+$right focus right
-    # Or use $mod+[up|down|left|right]
-    bindsym $mod+Left focus left
-    bindsym $mod+Down focus down
-    bindsym $mod+Up focus up
-    bindsym $mod+Right focus right
+# Regular floating
+for_window [app_id="sp-term|sp-lf|sp-cal|sp-mus|sp-nmt|sp-htop"] floating enable
+bindsym $mod+Shift+Return exec $term --class sp-term
+bindsym $mod+e exec $term --class sp-lf -e lf
+bindsym $mod+c exec $term --class sp-cal -e calcurse
+bindsym $mod+Shift+m exec  $term --class sp-mus -e ncmpcpp
+bindsym $mod+Ctrl+n exec  $term --class sp-nmt -e nmtui
+bindsym $mod+Shift+Delete exec  $term --class sp-htop -e htop
 
-    # Move the focused window with the same, but add Shift
-    bindsym $mod+Shift+$left move left
-    bindsym $mod+Shift+$down move down
-    bindsym $mod+Shift+$up move up
-    bindsym $mod+Shift+$right move right
-    # Ditto, with arrow keys
-    bindsym $mod+Shift+Left move left
-    bindsym $mod+Shift+Down move down
-    bindsym $mod+Shift+Up move up
-    bindsym $mod+Shift+Right move right
+# Sway scratchpad:
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+# Moving around:
+  # Move your focus around
+  bindsym $mod+$left focus left
+  bindsym $mod+$down focus down
+  bindsym $mod+$up focus up
+  bindsym $mod+$right focus right
+  # Or use $mod+[up|down|left|right]
+  bindsym $mod+Left focus left
+  bindsym $mod+Down focus down
+  bindsym $mod+Up focus up
+  bindsym $mod+Right focus right
+
+  # Move the focused window with the same, but add Shift
+  bindsym $mod+Shift+$left move left
+  bindsym $mod+Shift+$down move down
+  bindsym $mod+Shift+$up move up
+  bindsym $mod+Shift+$right move right
+  # Ditto, with arrow keys
+  bindsym $mod+Shift+Left move left
+  bindsym $mod+Shift+Down move down
+  bindsym $mod+Shift+Up move up
+  bindsym $mod+Shift+Right move right
 
 # Workspaces:
-    # Switch to workspace
-    bindsym $mod+1 workspace number 1
-    bindsym $mod+2 workspace number 2
-    bindsym $mod+3 workspace number 3
-    bindsym $mod+4 workspace number 4
-    bindsym $mod+5 workspace number 5
-    bindsym $mod+6 workspace number 6
-    bindsym $mod+7 workspace number 7
-    bindsym $mod+8 workspace number 8
-    bindsym $mod+9 workspace number 9
-    bindsym $mod+0 workspace number 10
-    # Move focused container to workspace
-    bindsym $mod+Shift+1 move container to workspace number 1
-    bindsym $mod+Shift+2 move container to workspace number 2
-    bindsym $mod+Shift+3 move container to workspace number 3
-    bindsym $mod+Shift+4 move container to workspace number 4
-    bindsym $mod+Shift+5 move container to workspace number 5
-    bindsym $mod+Shift+6 move container to workspace number 6
-    bindsym $mod+Shift+7 move container to workspace number 7
-    bindsym $mod+Shift+8 move container to workspace number 8
-    bindsym $mod+Shift+9 move container to workspace number 9
-    bindsym $mod+Shift+0 move container to workspace number 10
-    # Note: workspaces can have any name you want, not just numbers.
-    # We just use 1-10 as the default.
-    bindsym $mod+o workspace next
-    bindsym $mod+Ctrl+Right workspace next
-    bindsym $mod+i workspace prev
-    bindsym $mod+Ctrl+Left workspace prev
-    bindsym $mod+Tab workspace back_and_forth
+  # Switch to workspace
+  bindsym $mod+1 workspace number 1
+  bindsym $mod+2 workspace number 2
+  bindsym $mod+3 workspace number 3
+  bindsym $mod+4 workspace number 4
+  bindsym $mod+5 workspace number 5
+  bindsym $mod+6 workspace number 6
+  bindsym $mod+7 workspace number 7
+  bindsym $mod+8 workspace number 8
+  bindsym $mod+9 workspace number 9
+  bindsym $mod+0 workspace number 10
+  # Move focused container to workspace
+  bindsym $mod+Shift+1 move container to workspace number 1
+  bindsym $mod+Shift+2 move container to workspace number 2
+  bindsym $mod+Shift+3 move container to workspace number 3
+  bindsym $mod+Shift+4 move container to workspace number 4
+  bindsym $mod+Shift+5 move container to workspace number 5
+  bindsym $mod+Shift+6 move container to workspace number 6
+  bindsym $mod+Shift+7 move container to workspace number 7
+  bindsym $mod+Shift+8 move container to workspace number 8
+  bindsym $mod+Shift+9 move container to workspace number 9
+  bindsym $mod+Shift+0 move container to workspace number 10
+  # Note: workspaces can have any name you want, not just numbers.
+  # We just use 1-10 as the default.
+  bindsym $mod+o workspace next
+  bindsym $mod+i workspace prev
+  bindsym $mod+Ctrl+Right workspace next
+  bindsym $mod+Ctrl+Left workspace prev
+  bindsym $mod+Tab workspace back_and_forth
 
 # Layout stuff:
-    # $mod+m or $mod+n, for horizontal and vertical splits
-    # respectively.
-    bindsym $mod+m splith
-    bindsym $mod+n splitv
+  # $mod+m or $mod+n, for horizontal and vertical splits
+  # respectively.
+  bindsym $mod+m splith
+  bindsym $mod+n splitv
 
-    # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
-    bindsym $mod+t layout tabbed
-    bindsym $mod+semicolon layout toggle split
+  # Switch the current container between different layout styles
+  bindsym $mod+s layout stacking
+  bindsym $mod+t layout tabbed
+  bindsym $mod+semicolon layout toggle split
 
-    # Make the current focus fullscreen
-    bindsym $mod+f fullscreen
+  # Make the current focus fullscreen
+  bindsym $mod+f fullscreen
 
-    # Toggle sticky
-    bindsym $mod+Ctrl+s sticky toggle
+  # Toggle sticky
+  bindsym $mod+Ctrl+s sticky toggle
 
-    # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+space floating toggle
+  # Toggle the current focus between tiling and floating mode
+  bindsym $mod+Shift+space floating toggle
 
-    # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
+  # Swap focus between the tiling area and the floating area
+  bindsym $mod+space focus mode_toggle
 
-    # Move focus to the parent container
-    bindsym $mod+a focus parent
-    # focus the child container
-    bindsym $mod+Shift+a focus child
+  # Move focus to the parent container
+  bindsym $mod+a focus parent
+  # focus the child container
+  bindsym $mod+Shift+a focus child
 
 # Gap
-    gaps inner 8
-    gaps outer 2
-    smart_gaps on
-    hide_edge_borders smart_no_gaps
+  gaps inner 8
+  gaps outer 2
+  smart_gaps on
+  hide_edge_borders smart_no_gaps
 
-# Resizing containers:
-# mode "resize" {
-#     # left will shrink the containers width
-#     # right will grow the containers width
-#     # up will shrink the containers height
-#     # down will grow the containers height
-#     bindsym $left resize shrink width 10px
-#     bindsym $down resize grow height 10px
-#     bindsym $up resize shrink height 10px
-#     bindsym $right resize grow width 10px
-# 
-#     # Ditto, with arrow keys
-#     bindsym Left resize shrink width 10px
-#     bindsym Down resize grow height 10px
-#     bindsym Up resize shrink height 10px
-#     bindsym Right resize grow width 10px
-# 
-#     # Return to default mode
-#     bindsym Return mode "default"
-#     bindsym Escape mode "default"
-# }
-# bindsym $mod+r mode "resize"
-    
 # resize
 bindsym $mod+$alt+h resize shrink width 5 px or 5 ppt
 bindsym $mod+$alt+j resize grow height 5 px or 5 ppt
@@ -309,9 +307,6 @@ mode $mode_system {
 	bindsym Escape mode "default"
 }
 bindsym $mod+Escape mode $mode_system
-
-# Toggle notification bar
-bindsym $mod+z exec swaync-client -t -sw
 
 # Title format for windows
 for_window [shell="xdg_shell"] title_format "%title (%app_id)"
