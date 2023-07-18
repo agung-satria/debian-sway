@@ -294,13 +294,13 @@ bindsym $mod+mod1+bracketleft exec --no-startup-id mpc repeat && mpc single
 bindsym $mod+mod1+bracketright exec --no-startup-id mpc random
 
 # System mode menu
-set $mode_system "What to do? (l)ock, (e)xit, (r)eboot, (s)uspend, (S)hutdown"
+set $mode_system "What to do? (l)ock, (e)xit, (r)eboot, (s)uspend, (p)oweroff"
 mode $mode_system {
 	bindsym l exec swaylock -f -C ~/.config/swaylock/config; mode "default"
 	bindsym e exec swaymsg exit; mode "default"
 	bindsym r exec systemctl reboot; mode "default"
 	bindsym s exec systemctl suspend; mode "default"
-	bindsym Shift+s exec systemctl poweroff; mode "default"
+	bindsym p exec systemctl poweroff; mode "default"
 
 	# back to normal: Enter or Escape
 	bindsym Return mode "default"

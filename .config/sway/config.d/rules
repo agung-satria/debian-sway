@@ -69,9 +69,9 @@ for_window [app_id="solaar"] floating enable
 for_window [app_id="evolution" title="Compose Message"] floating enable
 for_window [app_id="evolution" title="Re(.*)"] floating enable
 for_window [app_id="evolution" title="Fwd(.*)"] floating enable
-for_window [app_id="mpv"] floating enable
-for_window [app_id="mpv"] resize set 1280 720
-for_window [app_id="mpv"] border pixel 0
+# for_window [app_id="mpv"] floating enable
+# for_window [app_id="mpv"] resize set 1280 720
+# for_window [app_id="mpv"] border pixel 0
 
 # set floating for window roles
 for_window [window_role="pop-up"] floating enable
