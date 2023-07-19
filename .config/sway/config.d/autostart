@@ -1,5 +1,6 @@
-### Auth with polkit-gnome
-exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+### Authentication agent
+# exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+exec /usr/lib/x86_64-linux-gnu/libexec/polkit-kde-authentication-agent-1
 
 ### Notification Daemon
 exec swaync
@@ -11,23 +12,20 @@ exec nm-applet --indicator
 ### Music Player Daemon
 exec mpd
 
-### Low battery notifier
+### Low Battery Notifier
 exec lbnrunner
 
 ### Bluetooth
 exec blueman-applet
 
-### Clipboard manager
+### Clipboard Manager
 exec wl-paste -t text --watch clipman store --no-persist
 
-### GTK3 applications take a long time to start
+### GTK3 Applications take a long time to start
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && \
      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
      
-### Ga tau gimana
-# exec --no-startup-id libinput-gestures
-
-### Manually mount w10 data
+### Manually Mount W10 Data
 # exec sleep 3 && exec alacritty --class sp-term -e sudo mount /dev/nvme0n1p5 /home/agung/w10
 # exec alacritty --class sp-term -e sudo mount /dev/nvme0n1p5 /home/agung/w10

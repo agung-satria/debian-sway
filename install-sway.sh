@@ -18,7 +18,8 @@ sudo systemctl enable acpid
 sudo systemctl enable avahi-daemon
 
 ### Polkit
-sudo apt install -y policykit-1-gnome
+# sudo apt install -y policykit-1-gnome # (doesn't work on wayland; @debian)
+sudo apt install -y polkit-kde-agent-1
 
 ### Network Manager
 sudo apt install -y network-manager network-manager-gnome 

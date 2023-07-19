@@ -62,6 +62,7 @@ for_window [app_id="firefox" title="About Mozilla Firefox"] floating enable
 # Wayland default floats
 for_window [app_id="gnome-(power-statistics)"] floating enable
 for_window [app_id="org.gnome.(Calculator|Calendar|Settings|Nautilus|Weather)"] floating enable
+for_window [app_id="org.kde.polkit-kde-authentication-agent-1"] floating enable
 for_window [app_id="(pavucontrol|psensor)"] floating enable
 for_window [app_id="evolution-alarm-notify"] floating enable
 for_window [app_id="thunar"] floating enable, resize set width 1234 px height 720 px
