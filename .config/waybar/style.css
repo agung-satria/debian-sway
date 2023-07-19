@@ -9,56 +9,81 @@
 }
 
 window#waybar {
-    color: rgba(207, 207, 207, 1);
-    background-color: rgba(3, 7, 10, 0.85);
-    border-bottom: 1px solid rgba(195, 197, 201, 0.35)
+    color: #DADADA;
+    /* background-color: #000000; */
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 window#waybar.solo {
-    color: rgba(78, 85, 91, 1);
+    color: #DADADA;
 }
 
 #workspaces {
-    /* margin: 0 5px; */
     margin: 0;
 }
 
 #custom-sep {
-  color: #6E6E6E;
-}
-
-#custom-scratchpad {
-    margin: 0px	5px;
-    padding: 0px 5px;
+  color: #888888;
 }
 
 #workspaces button {
-    padding: 0 5px;
-    color: rgba(120, 120, 120, 1);
+    padding: 0 1px;
+    margin: 0 1px ;
+    color: #888888;
+    background: #222222;
+    border: 1px solid #333333;
 }
 #workspaces button:hover {
-    background: rgba(191, 191, 191, 0.15);
-    color: rgba(184, 184, 184, 1);
+    padding: 0 1px;
+    margin: 0 1px ;
+    color: #979797;
+    background: #3B3B3B;
+    border: 1px solid #464646;
 }
 
 #workspaces button.focused {
-    background: rgba(193, 193, 193, 0.25);
-    color: rgba(217, 216, 216, 1);
+    padding: 0 1px;
+    margin: 0 1px ;
+    color: #FFFFFF;
+    /* background: #285577; */
+    /* border: 1px solid #4c7899; */
+    background: #515151;
+    border: 1px solid #727272;
 }
 #workspaces button.focused:hover {
-    background: rgba(193, 193, 193, 0.25);
+    padding: 0 1px;
+    margin: 0 1px ;
+    color: #FFFFFF;
+    /* background: #285577; */
+    /* border: 1px solid #4c7899; */
+    background: #515151;
+    border: 1px solid #727272;
 }
 
 #workspaces button.visible {
-    /* color: rgba(90, 209, 225, 1); */
-    color: #EDEDED;
+    padding: 0 1px;
+    margin: 0 1px ;
+    color: #DADADA;
 }
 #workspaces button.visible:hover {
-    color: white;
+    padding: 0 1px;
+    margin: 0 1px ;
+    color: #DADADA;
 }
 
 #workspaces button.urgent {
-    color: rgba(235, 51, 51, 1);
+    padding: 0 1px;
+    margin: 0 1px ;
+    color: #DADADA;
+    background: #900000;
+    border: 1px solid #2f343a;
+}
+#workspaces button.urgent:hover {
+    padding: 0 1px;
+    margin: 0 1px ;
+    color: #DADADA;
+    background: #A10000;
+    border: 1px solid #2f343a;
 }
 
 #mode, 
@@ -80,14 +105,13 @@ window#waybar.solo {
 }
 
 #battery.warning {
-   color: rgba(237, 213, 100, 1);
+   color: #EDD564;
 }
 
 #battery.critical {
-    color: rgba(239, 81, 72, 1);
+    color: #EF5148;
 }
 
 #battery.charging {
-    color: rgba(129, 240, 90, 1);
+    color: #81F05A;
 }
-

@@ -1,35 +1,20 @@
 {
     "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    "position": "top", // Waybar position (top|bottom|left|right)
     "height": 26, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     // "gtk-layer-shell": "false",
     // Choose the order of the modules
-    // "modules-left": ["sway/workspaces", "custom/scratchpad", "sway/mode", "tray", "sway/window"],
-    "modules-left": ["sway/workspaces", "custom/scratchpad", "sway/mode"],
+    // "modules-left": ["sway/workspaces", "sway/mode", "tray", "sway/window"],
+    "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": [], 
     // "modules-center": ["sway/window"],
     //"modules-right": ["network", "cpu", "memory", "temperature", "backlight", "battery", "battery#bat2", "pulseaudio", "custom/layout", "clock"],
     "modules-right": ["tray", "custom/blank", "custom/sep" ,"cpu", "memory", "battery", "battery#bat2", "pulseaudio", "custom/layout", "clock"],
-    //"modules-right": ["cpu", "memory", "battery", "battery#bat2", "pulseaudio", "custom/layout", "clock", "tray", "custom/blank"],
+    //"modules-right": ["tray", "custom/blank", "custom/sep" , "battery", "battery#bat2", "pulseaudio", "custom/layout", "clock"],
     "sway/mode": {
         "format": " {}"
     },
-   // "sway/workspaces": {
-   //     "all-outputs": false,
-   //     "disable-scroll": true,
-   //     "format": " {icon} ",
-   //     // "format-icons": {
-   //     //     "urgent": "",
-   //     //     "focused": "",
-   //     //     "default": ""
-   //     // }
-   //     "format-icons": {
-   //         "urgent": "",
-   //         "focused": "",
-   //         "default": ""
-   //     }
-   // },
      // "sway/workspaces": {
      //     "disable-scroll": true,
      //     "all-outputs": true,
@@ -59,22 +44,6 @@
     "custom/blank": {
         "format": " ",
     },
-    // Modules configuration
-    //  "sway/workspaces": {
-    //     "disable-scroll": true,
-    //     "all-outputs": true,
-    //     "format": "{name}: {icon}",
-    //     "format-icons": {
-    //         "1": "",
-    //         "2": "",
-    //         "3": "",
-    //         "4": "",
-    //         "5": "",
-    //         "urgent": "",
-    //         "focused": "",
-    //         "default": ""
-    //     }
-    // },
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
@@ -86,23 +55,11 @@
         // "icon-size": 21,
         "spacing": 8,
     },
-    //"clock": {
-    //    "timezone": "Asia/Jakarta",
-    //    // "format": " {:%b %d %Y %R}",
-    //    "format": " {:%a, %d %b %I:%M %p}",
-    //    "tooltip-format": "<span color='#35b9ab'><big>{:%Y %B}</big></span>\n<span color='#35b9ab'><tt><small>{calendar}</small></tt></span>",
-    //    "format-alt": "{:%a %d %b w:%V %H:%M}",
-    //    "today-format": "<span background='#E3FE0E' color='#21a4df'><b><u>{}</u></b></span>",
-    //    "calendar-weeks-pos": "left",
-    //    "format-calendar": "<span background='#173f4f' bgalpha='60%'><b>{}</b></span>",
-    //    "format-calendar-weeks": "<span color='#73ba25'><b>{}</b></span>",
-    //    "format-calendar-weekdays": "<span color='#21a4df'><b>{}</b></span>",
-    //    "interval": 10
-    //},
     "clock": {
         "timezone": "Asia/Jakarta",
         // "format": " {:%b %d %Y %R}",
-        "format": " {:%a, %d %b %I:%M %p}",
+        // "format": " {:%a, %d %b %I:%M %p}",
+        "format": " {:%a %h-%d %I:%M %p}",
         "tooltip-format": "<span color='#D1D1D1'><big>{:%Y %B}</big></span>\n<span color='#D1D1D1'><tt><small>{calendar}</small></tt></span>",
         //"format-alt": "{:%a %d %b w:%V %H:%M}",
         "today-format": "<span background='#E7FE2F' color='#080811'><b><u>{}</u></b></span>",
@@ -110,6 +67,8 @@
         "format-calendar": "<span><b>{}</b></span>",
         "format-calendar-weeks": "<span color='#64CF28'><b>{}</b></span>",
         "format-calendar-weekdays": "<span color='#54D1E1'><b>{}</b></span>",
+        "on-click": "$TERMINAL --class sp-cal -e calcurse",
+        //"on-click-right": "",
         "interval": 10
     },
     "cpu": {
@@ -132,17 +91,7 @@
         // "device": "acpi_video1",
         "format": "{percent}% {icon}",
        // "format-icons": ["", ""]
-      "format-icons": [
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        ""
-      ],
+      "format-icons": [ "", "", "", "", "", "", "", "", "" ],
       },
     "battery": {
         "states": {
@@ -189,15 +138,6 @@
         "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
         "on-click-right": "pavucontrol",
         "tooltip": false
-    },
-    "custom/scratchpad": {
-        "format-text": "{}",
-        "return-type": "json",
-        "interval": 3,
-        "exec": "scratchpad-indicator.sh 2> /dev/null",
-        "exec-if": "exit 0",
-        "on-click": "swaymsg 'scratchpad show'",
-        "on-click-right": "swaymsg 'move scratchpad'"
     },
     "custom/notification": {
 	"tooltip": true,

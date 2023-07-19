@@ -2,7 +2,8 @@ colors:
   name: Agstr
   primary:
     # background: "#222222"
-    background: "#0A0E14"
+    # background: "#0A0E14"
+    background: "#000000"
     foreground: "#B6BECA"
   cursor:
     text: "#070C0F"

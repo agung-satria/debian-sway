@@ -5,8 +5,8 @@ indicator-caps-lock
 # datestr=%A
 image=$HOME/.config/swaylock/swaylock.png
 scaling=fill
-font=UbuntuMono
-font-size=20
+font=SF Pro Display
+font-size=24
 
 # Ring
 indicator-radius=115

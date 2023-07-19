@@ -227,8 +227,8 @@ map V push :!nvim<space>
 map Y $printf "%s" "$fx" | xclip -selection clipboard
 
 map W $setsid -f $TERMINAL >/dev/null 2>&1
-map S $alacritty --class alcrt-ttrm &
-map <c-o> $alacritty --class alcrt-nvim -e nvim $f
+map S $alacritty --class sp-term &
+map <c-o> $alacritty --class sp-term -e nvim $f &
 
 # Source Bookmarks
 source "~/.config/lf/shortcutrc"
@@ -242,6 +242,6 @@ map gp cd ~/Pictures
 map gv cd ~/Videos
 map gc cd ~/.config
 map gl cd ~/.local
-map gs cd ~/.dotfiles
-map gt cd ~/.stuff
-map gw cd ~/.local/share/wallpapers
+map gf cd ~/.dotfiles
+map gs cd ~/.stuff
+map gw cd ~/w10

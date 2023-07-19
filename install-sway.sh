@@ -53,7 +53,7 @@ sudo apt install -y wayland-protocols xwayland
 sudo apt install -y libgtk-layer-shell-dev # ?
 sudo apt install -y xdg-desktop-portal-wlr
 sudo apt install -y dex jq 
-sudo apt install -y l3afpad geany 
+sudo apt install -y geany 
 sudo apt install -y build-essential 
 sudo apt install -y libpam0g-dev libxcb1-dev
 xdg-user-dirs-update
@@ -67,7 +67,7 @@ sudo apt install -y amd64-microcode
 sudo apt install -y libglib2.0-bin
 
 ### it will also install adwaita icon
-sudo apt install arc-theme
+sudo apt install -y arc-theme
 
 ### PDF viewer
 sudo apt install -y mupdf zathura
@@ -119,6 +119,13 @@ cp -r ~/.dotfiles/.local/bin/ ~/.local/
 cp -r ~/.dotfiles/.local/share/* ~/.local/share/
 ln -s ~/.config/zsh/profile .zprofile
 chsh -s $(which zsh) # change default shell
+
+# Create thunar config to have 'open terminal here':
+[ ! -d "~/.config/xfce4/" ] && mkdir -p ~/.config/xfce4
+echo "TerminalEmulator=alacritty" > ~/.config/xfce4/helpers.rc
+echo "TerminalEmulatorDismissed=true" >> ~/.config/xfce4/helpers.rc
+# Thunar - edit - configure custom actions
+# on 'open terminal here' - create keyboard shortcut (ex: F4)
 
 # Install icon and theme
 sudo tar -xf ~/.dotfiles/.assets/qogir-icon.tar.gz -C /usr/share/icons

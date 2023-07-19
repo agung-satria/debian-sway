@@ -27,3 +27,7 @@ exec hash dbus-update-activation-environment 2>/dev/null && \
      
 ### Ga tau gimana
 # exec --no-startup-id libinput-gestures
+
+### Manually mount w10 data
+# exec sleep 3 && exec alacritty --class sp-term -e sudo mount /dev/nvme0n1p5 /home/agung/w10
+# exec alacritty --class sp-term -e sudo mount /dev/nvme0n1p5 /home/agung/w10
